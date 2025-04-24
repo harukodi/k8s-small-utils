@@ -1,10 +1,4 @@
-FROM ubuntu:25.04
-# Disable Prompt During Packages Installation
-ARG DEBIAN_FRONTEND=noninteractive
-# Update Ubuntu Software repository
-RUN apt update && apt upgrade -y
-# Install nginx, php-fpm and supervisord from ubuntu repository
-RUN apt install dnsutils iputils-ping curl wget netcat nano -y
-RUN rm -rf /var/lib/apt/lists/*
-RUN apt clean
+FROM alpine:3.21.3
+# Install nmap bind-tools iputils curl wget nano bash from Alpine repository
+RUN apk update && apk add --no-cache nmap bind-tools iputils curl wget nano bash
 CMD ["/bin/bash"]
